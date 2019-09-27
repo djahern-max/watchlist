@@ -1,17 +1,17 @@
--- Drops the day_planner_db if it already exists --
-DROP DATABASE IF EXISTS moviePlannerDB;
+-- Drops the movie_planner_db if it already exists --
+DROP DATABASE IF EXISTS movie_planner_db;
 
--- Create the database day_planner_db and specified it for use.
-CREATE DATABASE moviePlannerDB;
+-- Create the database movie_planner_db and specified it for use.
+CREATE DATABASE movie_planner_db;
 
-USE moviePlannerDB;
+USE movie_planner_db;
 
 -- Create the table plans.
-CREATE TABLE Movies (
+CREATE TABLE movies (
   id int NOT NULL AUTO_INCREMENT,
-  Movie varchar(255) NOT NULL,
+  movie varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 -- Insert a set of records.
-INSERT INTO movies (movie) VALUES ('Office Space');
+INSERT INTO movies (movie) VALUES ('Rush Hour 2');

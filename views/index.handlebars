@@ -1,4 +1,4 @@
-<h1>Movie Planner</h1>
+<h1>Movies To Watch</h1>
 
 <ul>
     {{#each movies}}
@@ -6,13 +6,13 @@
         <p>
             {{this.id}}. {{this.movie}}
 
-            <button data-planid="{{this.id}}" class="delplan">Delete Movie!</button>
+            <button data-movieid="{{this.id}}" class="delmovie">Delete</button>
         </p>
     </li>
     {{/each}}
 </ul>
 
-<h2>Add a Movie</h2>
+<h2>Add a Movie to Watch</h2>
 <form id="addmovie" class="button-size">
     <textarea type="text" name="movie"></textarea>
     <button type="submit">Save Movie!</button>
@@ -27,8 +27,6 @@
 
 <script type="text/javascript">
     $(".delmovie").on("click", function (event) {
-        // Get the ID from the button.
-        // This is shorthand for $(this).attr("data-planid")
         var id = $(this).data("movieid");
 
         // Send the DELETE request.
@@ -43,13 +41,12 @@
         );
     });
 
-    $("#createmovie").on("submit", function (event) {
+    $("#addmovie").on("submit", function (event) {
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
-        // [name=plan] will find an element with a "name" attribute equal to the string "plan"
         var newMovie = {
-            movie: $("#createmovie [name=movie]").val().trim()
+            movie: $("#addmovie [name=movie]").val().trim()
         };
 
         // Send the POST request.
@@ -58,7 +55,7 @@
             data: newMovie
         }).then(
             function () {
-                console.log("created new movie");
+                console.log("added new movie");
                 // Reload the page to get the updated list
                 location.reload();
             }
@@ -69,7 +66,6 @@
         // Make sure to preventDefault on a submit event.
         event.preventDefault();
 
-        // Get the ID by finding an element with a "name" attribute equal to the string "id"
         var id = $("[name=id]").val().trim();
 
         var updatedMovie = {
